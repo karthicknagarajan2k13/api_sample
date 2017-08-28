@@ -1,0 +1,78 @@
+
+
+<%#= render "devise/shared/links" %>
+
+<div class="row">
+  <div class="col-md-4"></div>
+  <div class="col-md-4">
+    <div class="inital-regi-top">
+      <div class="inital-con">
+      <div class="title-head">Make your prophet</div>
+        <%= form_for @user, url: users_prophet_create_path(@user), method: :post do |f| %>
+        <%#= devise_error_messages! %>
+        <%= render partial: 'shared/error_messages', locals: {object: @user} %>
+        <div class="form-group row">
+          <!-- <label for="example-text-input" class="col-xs-3 col-form-label">Name</label> -->
+          <div class="col-xs-12">
+            <%= f.text_field :name, class: "form-control", placeholder:"Name" %>
+          </div>
+        </div>
+        <div class="form-group row">
+          <!-- <label for="example-search-input" class="col-xs-3 col-form-label">Age</label> -->
+          <div class="col-xs-12">
+            <!-- <input class="form-control" type="search" value="age" id="example-search-input"> -->
+            <%= f.text_field :age, class: "form-control", placeholder:"Age"%>
+          </div>
+        </div>
+       <div class="form-group row">
+        <!-- <label for="example-email-input" class="col-xs-3 col-form-label">Email</label> -->
+        <div class="col-xs-12">
+          <%= f.email_field :email, autofocus: true, class:"form-control",id:"email", placeholder:"Email" %>
+        </div>
+      </div>
+        <div class="form-group row">    
+          <!-- <%#= f.label :gender, class: "col-xs-3 col-form-label" %> -->
+          <div class="col-xs-12">
+           <%= f.radio_button :gender, "female", class: "radio-inline", style:"height:30px;"%> Female
+           <%#= label_tag(:gender_person, "Female") %>
+           <%= f.radio_button :gender, "male", class: "radio-inline", style:"height:30px;" %> Male
+           <%#= label_tag(:gender_person, "Male") %>
+         </div>
+       </div>
+      <div class="form-group row">
+        <!-- <label for="example-email-input" class="col-xs-3 col-form-label">Password</label> -->
+        <div class="col-xs-12">
+          <%= f.password_field :password, autocomplete: "off", class:"form-control", placeholder:"Password" %>
+        </div>
+      </div>
+      <div class="form-group row">
+        <!-- <label for="example-email-input" class="col-xs-3 col-form-label">confirmation</label> -->
+        <div class="col-xs-12">
+          <%= f.password_field :password_confirmation, autocomplete: "off", class:"form-control", placeholder:"password_confirmation" %>
+          <!-- Default Role id -->
+          <%= f.hidden_field :role_id, value: Role.find(2).id %>
+        </div>
+      </div>
+      <div class="form-group row">
+        <!-- <label class="col-xs-3 col-form-label"></label> -->
+        <div style="position:relative;" class="col-xs-12">
+          <div class="file-upload-p"> <a class='btn btn-file-upload btn-primary btn-lg btn-block' href='javascript:;' style="color: #fff">
+            Upload image
+            <%= f.file_field :image, style: 'position:absolute;z-index:2;top:0;left:0;filter: alpha(opacity=0);-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";opacity:0;background-color:transparent;color:transparent;' %>
+          </a>
+        </div>
+        <div><span class='label label-info' id="upload-file-info"></span></div>
+      </div>
+    </div><br /><br /><br />
+    <div class="form-group row">
+      <div class="col-xs-12">
+        <%#= f.submit "Sign up" %>
+        <p><button class="btn btn-signup btn-primary btn-lg btn-block"> Sign up</button></p>
+      </div>
+    </div>
+    <%end%>
+  </div>
+</div>
+<div class="col-md-4"></div>
+</div>
+

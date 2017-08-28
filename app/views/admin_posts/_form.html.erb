@@ -1,0 +1,30 @@
+<%= form_for(@admin_post) do |f| %>
+  <% if @admin_post.errors.any? %>
+    <div id="error_explanation">
+      <%= render partial: 'shared/error_messages', locals: {object: @admin_post} %>
+    </div>
+  <% end %>
+
+  <div class="inital-con" id="admin-edit-form">
+    <div class="form-group row">
+      <!-- <label for="title">Tittle</label> -->
+        <%= f.text_field :title, class: "form-control",placeholder:"Title"%>
+    </div>
+    <div class="form-group row">
+      <!-- <label for="message">Message</label> -->
+        <%= f.text_area :message, class: "form-control", placeholder:"Message"%>
+    </div>
+    <div class="form-group row is-active-box">
+      <div class="checkbox">
+        <label>
+          <%= f.check_box :is_active, style:"height:25px;margin-top:-1px;margin-left:-95px;"%> 
+          <label style="padding-left:0px !important;">Is active</label>
+        </label>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.submit :class => "btn-prophent btn btn-primary btn-lg btn-block" %>
+  </div>
+<% end %>
+

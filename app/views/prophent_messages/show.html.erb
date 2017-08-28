@@ -1,0 +1,66 @@
+<div class="row">
+  <div class="col-md-4"></div>
+  <div class="col-md-4 col-md-bg">
+    <div class="inital-regi-top">
+      <div class="title-head">Your word</div>
+        <div class="row">
+          <div class="message-content">
+            <h4 class="history-mess-h4"><%= @pro_message.try(:title) %></h4>
+            <p class="history-mess-p"><span>to :</span><%= ger_request_user(@pro_message) %></p>
+            <div class="message-descroiption">
+              <p><%= @pro_message.try(:message) %></p>
+            </div>
+            <% if user_signed_in? && current_user.role.name.include?('Student') && @pro_message.user_feedback.nil? %>
+              <div class="feedback-panel">
+                <span><%= link_to "Feedback", new_prophent_message_user_feedback_path(prophent_message_id: @pro_message.id) %></span>
+              </div>
+            <% elsif user_signed_in? && @pro_message.user_feedback.present? %>
+              <div class="message-descroiption">
+              <h3> Feedback</h3>
+              <p><%= @pro_message.user_feedback.try(:message) %></p>
+            </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4"></div>
+</div>
+
+<div class="row">
+  <div id="menu-fotter">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+      <div class="row menu-btn-top">
+        <hr>
+        <div class="row menu-btn-top" style="text-align: center">
+        <div class="col-md-4 col-sm-4 col-xs-4">
+          <%= link_to  root_path, class: "menu-btn" do %>
+            <i class="fa fa-home" aria-hidden="true"></i>
+          <%end%>
+        </div>
+        <div class="col-md-4 col-sm-4 col-xs-4">
+          <%= link_to  profile_path(get_user_name_or_email(current_user)), class: "menu-btn" do %>
+            <i class="fa fa-user-o" aria-hidden="true"></i>
+          <%end%>
+        </div>
+        <div class="col-md-4 col-sm-4 col-xs-4">
+          <% if current_user.prophent? %>
+            <%= link_to  prophent_messages_path, class: "menu-btn" do %>
+              <i class="fa fa-file" aria-hidden="true"></i>
+            <%end%>
+          <% else %>
+            <%= link_to  student_history_path, class: "menu-btn" do %>
+              <i class="fa fa-file" aria-hidden="true"></i>
+            <%end%>
+          <% end %>
+        </div>
+      </div>  
+      </div>
+    </div>
+    <div class="col-md-4"></div>    
+  </div>
+</div>
+
+

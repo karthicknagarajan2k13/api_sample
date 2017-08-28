@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>PocketPreacher</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+<% if user_signed_in? %>
+  <div class="container-fluid">
+    <div class="row menu-absoulate" style="height:50px;">
+      <span id="menu-btn">
+        <%= render 'shared/menu'%>
+        <p class="text-logo">POCKET PROPHET</p>
+
+      </span>
+    </div>
+  </div>
+<%end%>
+<div class="container-fluid">
+   <%= yield %>
+  <%= render "shared/user_menu" %>
+</div>
+<!-- <div class="footer">This footer will always be positioned at the bottom of the page, but <strong>not fixed</strong>.</div>
+ --></body>
+</html>
+

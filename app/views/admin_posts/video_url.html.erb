@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="col-md-4">
+  </div>
+  <div class="col-md-4">
+    <%= render partial: 'shared/error_messages', locals: {object: @admin_post} %>
+    <div class="title-head">Add Youtube Embed url</div>
+    <%= form_for @video_url, url:save_video_url_path do |f| %>
+      <div class="inital-con">
+        <div class="form-group">
+          <label for="url">Url</label>
+          <%= f.text_field :url, value: @video_url.try(:url), class: "form-control" %>
+          <%= hidden_field_tag :id, @video_url.try(:id) %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.submit :class => "btn-prophent btn-primary btn-lg btn-block " %>
+      </div>
+    <% end %>     
+  </div>
+  <div class="col-md-4">
+    
+  </div>
+</div>

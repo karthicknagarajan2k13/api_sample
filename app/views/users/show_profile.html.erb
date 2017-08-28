@@ -1,0 +1,82 @@
+
+
+<%#= render "devise/shared/links" %>
+
+<div class="row">
+  <div class="col-md-4"></div>
+  <div class="col-md-4 col-md-bg">
+    <div class="inital-regi-top">
+      <div class="title-head">Profile</div>
+      <div class="profile-logo">
+        <% if current_user.image? %>
+          <%= image_tag current_user.image_url, class:'profile-img' %>
+        <% else %>
+          <img src="/assets/no-img.jpg" class="profile-img">
+        <% end %>
+      </div>
+      <div class="inital-con show-profile-span">
+        <div class="form-group row">
+          <label for="example-text-input" class="col-xs-3 col-form-label">Name</label>
+          <div class="col-xs-9">
+            <span><%= current_user.try(:name)%></span>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="example-search-input" class="col-xs-3 col-form-label">Age</label>
+          <div class="col-xs-9">
+           <span><%= current_user.try(:age) %></span>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="example-search-input" class="col-xs-3 col-form-label">Gender</label>
+          <div class="col-xs-9">
+            <span><%= current_user.try(:gender) %></span>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="example-email-input" class="col-xs-3 col-form-label">Email</label>
+          <div class="col-xs-9">
+            <span><%= current_user.try(:email) %></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4"></div>
+</div>
+<div class="row">
+  <div id="menu-fotter">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+      <div class="row menu-btn-top">
+        <hr>
+        <div class="col-md-4 col-sm-4 col-xs-4">
+          <%= link_to root_path, class: "menu-btn" do %>
+             <i class="fa fa-home" aria-hidden="true"></i>
+          <%end%>
+        </div>
+        <% unless current_user.prophent? %>
+          <div class="col-md-4 col-sm-4 col-xs-4">
+            <%= link_to  create_request_path, class: "menu-btn", "data-confirm" => "Are you sure?" do %>
+              <i class="fa fa-check" aria-hidden="true"></i>
+            <%end%>
+          </div>
+        <% end %>
+        <div class="col-md-4 col-sm-4 col-xs-4">
+          <% if current_user.prophent? %>
+            <%= link_to  prophent_messages_path, class: "menu-btn" do %>
+              <i class="fa fa-file" aria-hidden="true"></i>
+            <%end%>
+          <% else %>
+            <%= link_to student_history_path, class: "menu-btn" do %>
+              <i class="fa fa-file" aria-hidden="true"></i>
+            <%end%>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4"></div>    
+  </div>
+</div>
+
+

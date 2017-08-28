@@ -1,0 +1,53 @@
+<div class="row">
+  <div class="col-md-4">
+  </div>
+  <div class="col-md-4 col-md-bg">
+    <div class="inital-regi-top">
+    <%= render partial: 'shared/error_messages', locals: {object: @feedback} %>
+      <div class="title-head"><%= get_message_heading %></div>
+      <div class="story-description">
+        <% @histories.each do |sh| %>
+          <% unless sh.prophent_message.nil? %>
+            <div class="row bordr-bottom">
+              <h3 class="story-head"><%= link_to "#{sh.prophent_message.try(:title)}", prophent_message_path(sh.prophent_message) %></h3>
+              <p class="stroy-sub-head">Prophet: <%= sh.prophent_message.user.name %></p>
+              <span class="story-data"><%= sh.try(:accepted_at) %></span>
+            </div>
+          <% end %>
+        <% end %>
+        <%= will_paginate @histories, renderer: BootstrapPagination::Rails %>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4"></div>
+</div>
+<div class="row">
+  <div id="menu-fotter">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+      <% unless current_user.admin? %>
+        <div class="row menu-btn-top" style="text-align: center">
+          <hr>  
+          <div class="col-md-4 col-sm-4 col-xs-4">
+            <%= link_to  root_path, class: "menu-btn" do %>
+              <i class="fa fa-home" aria-hidden="true"></i>
+            <%end%>
+          </div>
+          <div class="col-md-4 col-sm-4 col-xs-4">
+            <%= link_to  profile_path(get_user_name_or_email(current_user)), class: "menu-btn" do %>
+              <i class="fa fa-user-o" aria-hidden="true"></i>
+            <%end%>
+          </div>
+          <div class="col-md-4 col-sm-4 col-xs-4">
+            <%= link_to  student_history_path, class: "menu-btn" do %>
+              <i class="fa fa-file" aria-hidden="true"></i>
+            <%end%>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div class="col-md-4"></div>    
+  </div>
+</div>
+
+

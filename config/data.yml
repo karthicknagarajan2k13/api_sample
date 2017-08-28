@@ -1,0 +1,12 @@
+Permissions:
+  admin:
+    api/v1/admins: ['*']
+    api/v1/users: ['profile','profile_edit','profile_detail', 'user_detail','profile_detail']
+  student:
+    api/v1/requests: ['create_request']
+    api/v1/users: ['profile','student_history','user_feedback','profile_edit','profile_detail', 'admin_post', 'user_detail', 'video_url','profile_detail']
+    api/v1/prophents: ['prophent_message_show']
+  prophent:
+    api/v1/prophents: ['*']
+    api/v1/requests: ['accept_request','pending_request']
+    api/v1/users: ['profile','prophent_history','profile_edit','profile_detail', 'admin_post', 'user_detail','profile_detail']

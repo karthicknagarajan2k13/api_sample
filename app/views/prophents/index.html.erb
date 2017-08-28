@@ -1,0 +1,80 @@
+<div class="row">
+  <%#= render 'layouts/admin_nav' if current_user.role.name == "Admin" %>
+  <div class="col-md-4">
+  </div>
+  <div class="col-md-4 col-md-bg">
+    <div class="inital-regi-top">
+      <% if current_user.admin? %>
+        <div class="title-head">User Request</div>
+      <% else %>
+        <div class="title-head">Home</div>
+      <% end %>
+      <%= render partial: 'shared/error_messages', locals: {object: @prophent_message} %>
+      <div class="row prphet-padding">
+        <div class="prophet-request">
+          <h4 class="prophet-request-h4">Requests</h4>
+        </div>
+        <div class="requst-table">
+          <table class="table">
+            <tbody style="text-align: center">
+              <% if @requests.present? %>
+                <% @requests.each do |request| %>
+                  <% user = get_user_details(request) %>
+                  <tr>
+                    <td><span><%= get_user_name_or_email(user) %></span></td>
+                    <td><span>-</span></td>
+                    <td><span><%= user.try(:gender) %></span></td>
+                    <td><span>-</span></td>
+                    <td><span><%= user.try(:age) %></span></td>
+                    <td><span>-</span></td>
+                    <% if current_user.admin? %>
+                      <td><span class="prophent-delete"><%= link_to "Delete", delete_request_path(request.id),method: :delete, data: {confirm: "Are you sure?"} %></span></td>
+                    <% else%>
+                      <td><span><%= link_to "Accept", accept_request_path(request.id) %></span></td>
+                    <% end %>
+                  </tr>
+                <% end %>
+              <% else %>
+                <tr><td colspan="6">No request</td></tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <%= will_paginate @requests, renderer: BootstrapPagination::Rails %>
+    </div>
+  </div>
+  <div class="col-md-4"></div>
+</div>
+<div class="row">
+  <div id="menu-fotter">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+      <% unless current_user.admin? %>
+        <div id="footer">
+          <div class="row menu-btn-top" style="text-align: center">
+            <hr> 
+            <div class="col-md-4 col-sm-4 col-xs-4">
+              <%= link_to  root_path, class: "menu-btn" do %>
+                <i class="fa fa-home" aria-hidden="true"></i>
+              <%end%>
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-4">
+              <!-- <button class="menu-btn">Request the word</button> -->
+              <%= link_to profile_path(get_user_name_or_email(current_user)), class: "menu-btn" do %>
+                <i class="fa fa-user-o" aria-hidden="true"></i>
+              <%end%>
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-4">
+              <!-- <button class="menu-btn">Your history</button> -->
+              <%= link_to  prophent_messages_path, class: "menu-btn" do %>
+                <i class="fa fa-file" aria-hidden="true"></i>
+              <%end%>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div class="col-md-4"></div>    
+  </div>
+</div>

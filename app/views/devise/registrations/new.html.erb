@@ -1,0 +1,120 @@
+
+
+<%#= render "devise/shared/links" %>
+
+<div class="row sign_up_page">
+  <div class="col-md-4"></div>
+  <div class="col-md-4">
+    <div class="inital-regi-top">
+      <div class="inital-con">
+        <div class="title-head">Make your account</div>
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <%#= devise_error_messages! %>
+          <div class="form-group row">
+            <!-- <label for="example-text-input" class="col-xs-3 col-form-label">Name</label> -->
+            <div class="col-xs-12">
+              <%= f.text_field :name, class: "form-control",placeholder:"Name"%>
+            </div>
+          </div>
+          <div class="form-group row">
+            <!-- <label for="example-search-input" class="col-xs-3 col-form-label">Age</label> -->
+            <div class="col-xs-12">
+              <!-- <input class="form-control" type="search" value="age" id="example-search-input"> -->
+              <%= f.text_field :age, class: "form-control",placeholder:"Age"%>
+            </div>
+          </div>
+          <div class="form-group row">
+            <!-- <label for="example-email-input" class="col-xs-3 col-form-label">Email</label> -->
+            <div class="col-xs-12">
+              <%= f.email_field :email, autofocus: true, class:"form-control",id:"email", placeholder:"Email"%>
+            </div>
+          </div>
+          <div class="form-group row">    
+            <%#= f.label :gender, class: "col-xs-3 col-form-label" %> 
+            <div class="col-xs-12">
+             <%= f.radio_button :gender, "female", class: "radio-inline",style:"height:30px" %> Female
+             <%#= label_tag(:gender_person, "Female") %>
+             <%= f.radio_button :gender, "male", class: "radio-inline",style:"height:30px" %> Male
+             <%#= label_tag(:gender_person, "Male") %>
+            </div>
+          </div>
+          <div class="form-group row">
+            <!-- <label for="example-email-input" class="col-xs-3 col-form-label">Password</label> -->
+            <div class="col-xs-12">
+              <%= f.password_field :password, autocomplete: "off", class:"form-control",placeholder:"Password" %>
+            </div>
+          </div>
+          <div class="form-group row">
+            <!-- <label for="example-email-input" class="col-xs-3 col-form-label">confirmation</label> -->
+            <div class="col-xs-12">
+              <%= f.password_field :password_confirmation, autocomplete: "off", class:"form-control",placeholder:"Password Confirmation" %>
+              <!-- Default Role id -->
+              <%= f.hidden_field :role_id, value: Role.first.id %>
+            </div>
+          </div>
+          <div class="form-group row">
+            <!-- <label class="col-xs-3 col-form-label">Profile Image</label> -->
+            <div style="position:relative;" class="col-xs-12">
+              <div class="file-upload-p"> <a class='btn btn-file-upload btn-primary btn-lg btn-block' href='javascript:;' style="color: #fff">
+                Upload Image
+                <%= f.file_field :image, class: 'file', style: 'position:absolute;z-index:2;top:0;left:0;filter: alpha(opacity=0);-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";opacity:0;background-color:transparent;color:transparent;' %>
+                <!-- <input type="file" style='position:absolute;z-index:2;top:0;left:0;filter: alpha(opacity=0);-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";opacity:0;background-color:transparent;color:transparent;' name="file_source" size="40"  onchange='$("#upload-file-info").html($(this).val());'> -->
+                </a>
+              </div>
+              <div ><span class='label label-info' id="upload-file-info"></span></div>
+            </div>
+            <div class="upload-preview ">
+              <img class="profile-image-show" />
+            </div>
+            <!-- <input class="file" name="logo" type="file"> -->
+          </div>
+          <div class="form-group">
+            <div class="col-xs-12 regi-checkbox">
+              <div class="checkboxes">
+                <label><%= f.check_box :terms, :checked => false, style:"width:25px;margin-top:0px;margin-left:-4px margin", :id => "terms" %><span class="terms_button">Terms of service</span></label>
+              </div>
+              <p id="check_box_error"></p>
+            </div>
+          </div><br><br><br><br><br>
+          <div class="form-group" style="margin-top:10px;">
+            <p><button class="btn-signup btn-primary btn-lg btn-block" id="signup_button">Sign Up</button></p>
+          </div>
+        <%end%>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4"></div>
+</div>
+<!-- terms page -->
+<div class="row terms_page">
+  <div class="col-md-4"></div>
+  <div class="col-md-4 col-md-bg">
+    <div class="inital-regi-top">
+      <div class="inital-con">
+        <div class="title-head">Terms and Conditions</div>
+        <div class="form-group row">
+          <div class="col-xs-12">
+            <h5 style="font-weight: normal;">By downloading this application, I enter into a hold harmless agreement with Pocket Prophet and it's owners and agents for any personal life decisions I make as a result of the information provided me. I acknowledge that nothing provided through the Pocket Prophet application is meant to alter, encourage change or counsel my personal life decisions. By using the information provided through the Pocket Prophet application, I recognize and fully comprehend, my willful decisions are that of my own. I will use this application and the information obtained at my own discretion and at my own risk. I authorize Pocket Prophet application to maintain my personal information provided in the registration process, in a secure manner, accessible by agents of the Pocket Prophet application. I understand that Pocket Prophet will never use, publicize or sell my information to a third party without my permission. By clicking agree, I authorize this document by my personal electronic signature.</h5>
+          </div>
+        </div>
+        <div class="form-group new_back_button" style="margin-top:10px;">
+          <p align="center"><button class="btn-signup btn-back btn-primary btn-lg btn-block">Sign Up</button></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4"></div>
+</div>
+
+<script type="text/javascript">
+  $('.terms_button').click(function() {
+    $('.sign_up_page').hide();
+    $('.terms_page').show();
+  });
+  $('.btn-back').click(function() {
+    $('.sign_up_page').show();
+    $('.terms_page').hide();
+  });
+</script>
+
+

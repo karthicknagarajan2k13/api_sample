@@ -1,0 +1,56 @@
+<div class="row">
+  <div class="col-md-4"></div>
+  <div class="col-md-4 col-md-bg">
+    <div class="inital-regi-top">
+      <div class="video-play">
+        <% if @admin_info && @admin_info.url.present? %>
+          <p><iframe width="91%" height="115"  src="<%= embed(@admin_info.url) %>" frameborder="0" allowfullscreen style="border-radius:4px;"></iframe></p>
+        <% end %>
+      </div>
+      <div class="inital-con">
+        <div class="row">
+	        <div class="requst-title">
+	          <h4><%= link_to "Request word", create_request_path, "data-confirm" => "Are you sure?" %></h4>
+	        </div>
+        </div>
+        <div class="row requst-desc">
+          <div>
+          	<p><%= @admin_info.try(:title) %></p>
+          	<span><%= get_admin_name(@admin_info) %></span>
+          </div><br />
+          <div style="margin-top: 10px;">  
+          	<p class="descripton-p"><%= @admin_info.try(:message) %></p>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+    <div class="col-md-4"></div>
+  </div>
+</div>
+<div class="row">
+  <div id="menu-fotter">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+      <div class="row menu-btn-top">
+          <hr>
+          <div class="col-md-4 col-sm-4 col-xs-4">
+            <%= link_to  root_path, class: "menu-btn" do  %>
+              <i class="fa fa-home" aria-hidden="true"></i>
+            <%end%>
+          </div>
+          <div class="col-md-4 col-sm-4 col-xs-4">
+            <%= link_to  profile_path(get_user_name_or_email(current_user)), class: "menu-btn" do %>
+             <i class="fa fa-user-o" aria-hidden="true"></i>
+            <%end%>
+          </div>
+          <div class="col-md-4 col-sm-4 col-xs-4">
+            <%= link_to student_history_path, class: "menu-btn" do %>
+              <i class="fa fa-file" aria-hidden="true"></i>
+            <%end%>
+          </div>
+        </div>
+    </div>
+    <div class="col-md-4"></div>    
+  </div>
+</div>

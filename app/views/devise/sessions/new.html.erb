@@ -1,0 +1,32 @@
+
+<%#= render "devise/shared/links" %>
+
+
+ <div class="row">
+  <div class="col-md-4"></div>
+  <div class="col-md-4">
+    <div class="inital-top">
+      <div class="inital-logo">
+        <%= image_tag "Pocket-Prophet-Icon.png" %>
+      </div>
+      <div class="inital-con">
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          <div class="form-group row">
+            <div class="col-sm-12">
+              <%= f.email_field :email, autofocus: true,placeholder: "Email", class:"form-control" %>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-sm-12">     
+              <%= f.password_field :password, autocomplete: "off", placeholder:"Password", class:"form-control" %>      
+            </div>
+          </div>
+          <div class="actions">
+            <%= f.submit "Log in", class: "btn btn-lg  btn-block-submit", style:"color:#fff;background:#000 !important;border-radius:4px;font-size:17px;font-weight:bold;" %>
+          </div>
+        <%end%>
+      </div>
+      <p class="forgot-password"><%#= link_to "Forgot your password?", new_password_path(resource_name) %></p>
+  </div>
+  <div class="col-md-4"></div>
+</div>

@@ -1,0 +1,44 @@
+<div class="row">
+  <div class="col-md-4">
+  </div>
+  <div class="col-md-4">
+    <div class="title-head">Prophet</div>
+    <div class="row">
+    	<div class="col-md-12">
+    		<div class="inital-regi-top-new">
+    			<div class="inital-con">
+    				<p class="btn-propher-mb20"><%= link_to 'Create Prophet', users_prophet_new_path, class: 'btn-prophent btn-primary btn-lg btn-block ' %></p>
+    			</div>
+    		</div>
+    	</div>
+    	<div class="col-md-12">
+    		<% if @prophet_list.present? %>
+    				<table class="table">
+    					<thead>
+    						<tr>
+    							<th>Name</th>
+    							<th width="60%">Email</th>
+    						</tr>
+    					</thead>
+    					<tbody>
+    						<% @prophet_list.each do |prophet|%>
+    						<tr>
+    							<td><%= prophet.name%></td>
+    							<td><%= prophet.email%></td>
+    						</tr>
+    						<% end %>
+    					</tbody>
+    				</table>
+            <div class="pagination">
+              <%= will_paginate @prophet_list, renderer: BootstrapPagination::Rails %>
+            </div>
+    		<% else %>
+    			<p>No prophet present</p>
+    		<% end%>
+    	</div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    
+  </div>
+</div>

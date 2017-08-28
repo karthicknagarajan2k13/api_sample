@@ -1,0 +1,22 @@
+
+
+<div class="flash-messages">
+  
+  <% if flash.any? && (object.nil? || object.errors.count == 0) %>
+    <div class="padding10"></div>
+    <% flash.each do |message_type, message| %>
+      <% if message.present? %>
+        <div class="animated bounceInDown alert alert-<%= message_type %> alert-dismissible" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <% if message.is_a? Array %>
+            <% message.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          <% else %>
+            <%= message.html_safe %>
+          <% end %>
+        </div>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>
